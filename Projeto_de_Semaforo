@@ -1,0 +1,103 @@
+// Antes de mais nada, declare as variáveis dentro do sistema.
+
+const int ledcar_red = 1;
+
+const int ledcar_yellow = 2;
+
+const int ledcar_green = 3;
+
+const int ledpedest_red = 4;
+
+const int ledpedest_green = 5;
+
+
+
+void setup() {
+  // Aqui, como todos os LEDs são de saída, indique que todas as saídas lógicas usadas como OUTPUT
+
+  pinMode(ledcar_red, OUTPUT);
+
+  pinMode(ledcar_yellow, OUTPUT);
+
+  pinMode(ledcar_green, OUTPUT);
+
+  pinMode(ledpedest_red, OUTPUT);
+
+  pinMode(ledpedest_green, OUTPUT);
+
+}
+
+
+
+void loop() {
+  // Aqui, o semáforo do carro está fechado. Se está fechado, o pedestre pode andar.
+  
+  digitalWrite(ledcar_red, HIGH);
+
+  digitalWrite(ledcar_yellow, LOW);
+
+  digitalWrite(ledcar_green, LOW);
+
+  digitalWrite(ledpedest_red, LOW);
+
+  digitalWrite(ledpedest_green, HIGH);
+
+  delay(6000);
+
+
+  //Mas, quando o semáforo do carro estiver perto de ser aberto, o semáforo do pedestre começa a piscar. O verde permanece ligado,
+  //isso enquanto o vermelho do pedestre começa a piscar para avisar que vai fechar 
+
+  //Como eu não chamei o semáforo do carro, ele permanece aqui exatamente como eu deixei ele, o vermelho peranece ligado.
+
+
+
+
+  digitalWrite(ledpedest_red, LOW);
+
+  for(int i = 0; i < 10; i ++){
+
+    digitalWrite(ledpedest_red, HIGH);
+
+    delay(500);
+
+    digitalWrite(ledpedest_red, LOW);
+
+    delay(500);
+
+    }
+
+
+  //Após as piscadas, então o semáforo de carro abre, e o de pedestre fica fechado.
+
+
+  digitalWrite(ledcar_red, LOW);
+
+  digitalWrite(ledcar_yellow, LOW);
+
+  digitalWrite(ledcar_green, HIGH);
+
+  digitalWrite(ledpedest_red, HIGH);
+
+  digitalWrite(ledpedest_green, LOW);
+
+  delay(6000);
+
+
+  //Então, o semáforo do carro fica amarelo, enquanto o led do pedestre permanece fechado e então, o ciclo volte ao ponto inicial
+
+
+  digitalWrite(ledcar_red, LOW);
+
+  digitalWrite(ledcar_yellow, HIGH);
+
+  digitalWrite(ledcar_green, LOW);
+
+  digitalWrite(ledpedest_red, HIGH);
+
+  digitalWrite(ledpedest_green, LOW);
+
+  delay(3000);
+
+
+}
